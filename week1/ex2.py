@@ -7,12 +7,15 @@ treat2pat=1490
 notcure1=135
 cured1=treat1pat-notcure1
 cured2=1443
+notcure2=treat2pat-cured2
 #Calculate percentages to compare
 perc1cure=cured1/treat1pat
 perc2cure=cured2/treat1pat
 
 #Test. Average is set for 0 but since there is not subtraction that seems odd. Not sure how you would perform a subtraction though in this case.
-testT=proportions_ztest([cured1, cured2], [treat1pat, treat2pat])
+testT=proportions_ztest([notcure1, notcure2], [treat1pat, treat2pat])
+
+print("p_value="+str(testT[1]))
 
 if testT[1]>0.05:
     print("H0 stands. Both treatments are equal.")
